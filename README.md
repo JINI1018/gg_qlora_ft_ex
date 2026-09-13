@@ -4,7 +4,7 @@
 
 ### 0. 전제 조건
 
-- Windows + NVIDIA GPU (예: RTX 4060)
+- Windows(Host) + NVIDIA GPU (예: RTX 4060), WSL2 Ubuntu 환경
 - NVIDIA 드라이버 설치 완료
 - [uv](https://docs.astral.sh/uv/) 설치 완료
 
@@ -45,16 +45,17 @@ dependencies = [
     "bitsandbytes>=0.49.2",
     "datasets>=4.3.0",
     "evaluate>=0.4.6",
-    "huggingface-hub>=1.22.0",
     "ipykernel>=7.3.0",
     "ipywidgets>=8.1.8",
     "jupyterlab>=4.6.1",
     "matplotlib>=3.11.0",
     "numpy>=2.5.0",
     "ollama>=0.6.2",
+    "openai>=2.44.0",
     "pandas>=3.0.3",
     "peft>=0.19.1",
     "protobuf>=7.35.1",
+    "python-dotenv>=1.2.3",
     "scikit-learn>=1.9.0",
     "seaborn>=0.13.2",
     "sentencepiece>=0.2.1",
@@ -63,20 +64,26 @@ dependencies = [
     "torchaudio>=2.10.0",
     "torchvision>=0.25.0",
     "tqdm>=4.68.3",
-    "transformers>=5.5.0",
     "trl>=0.24.0",
     "unsloth>=2026.6.9",
 ]
 
 [tool.uv.sources]
-torch = [{ index = "pytorch-cu128" }]
-torchvision = [{ index = "pytorch-cu128" }]
-torchaudio = [{ index = "pytorch-cu128" }]
+torch = [
+    { index = "pytorch-cu128" },
+]
+torchvision = [
+    { index = "pytorch-cu128" },
+]
+torchaudio = [
+    { index = "pytorch-cu128" },
+]
 
 [[tool.uv.index]]
 name = "pytorch-cu128"
 url = "https://download.pytorch.org/whl/cu128"
 explicit = true
+
 ```
 
 > **중요**: `torch`, `torchvision`, `torchaudio`는 반드시 `[project.dependencies]`에 **직접** 적어야 한다.
